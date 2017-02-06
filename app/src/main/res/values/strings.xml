@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">GSB Mobile</string>
+    <string name="password"><font color="#325a88">Mot de passe</font></string>
+    <string name="email">Email</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="login">Se connecter</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email</string>
+    <string name="title_activity_user">User</string>
+    <string name="forget_password"><u>Mot de passe oublié ?</u></string>
+    <string name="username"><font color="#325a88">Identifiant</font></string>
+    <string name="title_activity_main_user"><center>GSB <i>Mobile</i></center></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Réglages</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_acceuil"
+            android:icon="@drawable/nav_home"
+            android:title="Acceuil" />
+        <item
+            android:id="@+id/nav_gestionfrais"
+            android:icon="@drawable/nav_gestionfrais"
+            android:title="Gestion de frais" />
+        <item
+            android:id="@+id/nav_cptrendu"
+            android:icon="@drawable/cptrendu"
+            android:title="Comptes rendus" />
+        <item
+            android:id="@+id/nav_agcommun"
+            android:icon="@drawable/agdcommun"
+            android:title="Agenda commun" />
+    </group>
+
+    <item android:title="Assistance"
+        android:id="@+id/assistance">
+        <menu>
+            <item
+                android:id="@+id/nav_assistancetel"
+                android:icon="@drawable/assistancetel"
+                android:title="Assistance téléphonique" />
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_assistancemail"
+        android:icon="@drawable/assistancemail"
+        android:title="assistance.gsb@gsbtoz.fr">
+    </item>
+
+</menu>
