@@ -26,9 +26,9 @@ public class HomeFragment extends Fragment  {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        //View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TabHost host = (TabHost)view.findViewById(R.id.tabHost);
+        TabHost host = (TabHost)getView().findViewById(R.id.tabHost);
         host.setup();
 
         //Tab 1
@@ -49,9 +49,9 @@ public class HomeFragment extends Fragment  {
         spec.setIndicator("Tab Three");
         host.addTab(spec);
 
-        return view;
+        //return view;
         // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_home, container, false);
+       return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
 }
