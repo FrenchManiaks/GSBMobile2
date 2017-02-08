@@ -28,11 +28,14 @@ public class LoginActivity extends AppCompatActivity {
     EditText editPassword, editName;
     Button btnSignIn;
 
-    String URL= "http://apheliotropic-cell.000webhostapp.com/index.php";
+    String URL= "http://192.168.43.224:80/gsb/index.php";
 
     JSONParser jsonParser=new JSONParser();
 
     int i=0;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +87,8 @@ public class LoginActivity extends AppCompatActivity {
             String name= args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("username", name));
-            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("login", name));
+            params.add(new BasicNameValuePair("mdp", password));
             if(email.length()>0)
                 params.add(new BasicNameValuePair("email",email));
 
@@ -102,19 +105,16 @@ public class LoginActivity extends AppCompatActivity {
             //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
 
             try {
-                if (result != null) {
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
-                }
+                if (result.getString("message").equals("Bienvenue")) {
 
-                if (result.getString("message").equals("Successfully logged in"))
-                {
+
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                    // Open MainUserActivity
                     Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Mauvais mot de passe", Toast.LENGTH_LONG).show();
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

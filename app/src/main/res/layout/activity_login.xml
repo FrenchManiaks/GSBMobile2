@@ -12,18 +12,28 @@
     tools:context="fr.falconteam.www.projetgsb.LoginActivity">
 
 
-    <TextView
-        android:text="@string/forget_password"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvFPassword"
-        android:textColor="@android:color/holo_red_light"
-        android:textAlignment="center"
-        android:textStyle="normal|italic"
-        android:textSize="16sp"
-        android:layout_marginBottom="110dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        app:srcCompat="@drawable/gsb3_e1475763703719"
+        android:id="@+id/imageView2"
+        android:layout_above="@+id/editName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp" />
+
+    <EditText android:id="@+id/editName"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="@string/username"
+    android:textColor="@color/colorPrimaryDark"
+    android:textColorHint="#A0192133"
+    android:fontFamily="sans-serif-light"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+        android:layout_above="@+id/editPassword"
+        android:layout_alignParentStart="true"
+        android:textAllCaps="false"
+        android:singleLine="true" />
 
     <EditText android:id="@+id/editPassword"
         android:layout_width="match_parent"
@@ -38,19 +48,6 @@
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
-    <EditText android:id="@+id/editName"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/username"
-    android:textColor="@color/colorPrimaryDark"
-    android:textColorHint="#A0192133"
-    android:fontFamily="sans-serif-light"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-        android:layout_above="@+id/editPassword"
-        android:layout_alignParentStart="true"
-        android:textAllCaps="false" />
-
     <Button
         android:layout_width="match_parent"
         android:id="@+id/btnSignIn"
@@ -63,13 +60,17 @@
         android:layout_marginTop="13dp"
         android:layout_height="65dp" />
 
-    <ImageView
+    <TextView
+        android:text="@string/forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/gsb3_e1475763703719"
-        android:id="@+id/imageView2"
-        android:layout_above="@+id/editName"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:id="@+id/tvFPassword"
+        android:textColor="@android:color/holo_red_light"
+        android:textAlignment="center"
+        android:textStyle="normal|italic"
+        android:textSize="16sp"
+        android:layout_marginBottom="110dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
