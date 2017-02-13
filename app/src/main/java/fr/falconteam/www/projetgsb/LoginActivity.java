@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editPassword, editName;
     Button btnSignIn;
 
-    String URL= "http://192.168.43.224:80/gsb/index.php";
+    String URL= "http://192.168.43.224:80/apigsb/login.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -82,15 +82,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-            String email = args[2];
-            String password = args[1];
-            String name= args[0];
+//            String email = args[2];
+            String mdp = args[1];
+            String login= args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("login", name));
-            params.add(new BasicNameValuePair("mdp", password));
-            if(email.length()>0)
-                params.add(new BasicNameValuePair("email",email));
+            params.add(new BasicNameValuePair("login", login));
+            params.add(new BasicNameValuePair("mdp", mdp));
+//            if(email.length()>0)
+//                params.add(new BasicNameValuePair("email",email));
 
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 
@@ -106,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 if (result.getString("message").equals("Bienvenue")) {
-
 
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
