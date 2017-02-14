@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editPassword, editName;
     Button btnSignIn;
 
-    String URL= "http://192.168.43.224:80/apigsb/login.php";
+    String URL= "http://192.168.43.224:80/gsb/index.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -41,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //TEST SINGLETON
+        Log.e("Valeur ",SingletonSession.getInstance().getString());
 
         editName=(EditText)findViewById(R.id.editName);
         editPassword=(EditText)findViewById(R.id.editPassword);

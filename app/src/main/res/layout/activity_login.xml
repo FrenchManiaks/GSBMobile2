@@ -33,7 +33,8 @@
         android:layout_above="@+id/editPassword"
         android:layout_alignParentStart="true"
         android:textAllCaps="false"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:text="matti" />
 
     <EditText android:id="@+id/editPassword"
         android:layout_width="match_parent"
@@ -46,7 +47,8 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="azerty" />
 
     <Button
         android:layout_width="match_parent"
