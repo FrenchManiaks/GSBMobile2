@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText editPassword, editName;
     Button btnSignIn;
 
-    String URL= "http://192.168.43.224:80/gsb/index.php";
+    String URL= "http://192.168.43.224:80/gsbtest/login.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -113,8 +113,10 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
                     startActivity(intent);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Mauvais mot de passe", Toast.LENGTH_LONG).show();
+
+                } else{
+
+                    Toast.makeText(getApplicationContext(), "Mauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
                 }
 
             } catch (JSONException e) {
