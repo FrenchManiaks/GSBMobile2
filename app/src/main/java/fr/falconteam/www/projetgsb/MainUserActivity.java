@@ -47,27 +47,6 @@ public class MainUserActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-//        TabHost tabHost;
-//        TabHost host = (TabHost)findViewById(R.id.tabHost);
-//        host.setup();
-//
-//        Tab 1
-//        TabHost.TabSpec spec = host.newTabSpec("Activités");
-//        spec.setContent(R.id.tab1);
-//        spec.setIndicator("Activités");
-//        host.addTab(spec);
-//
-//        Tab 2
-//        spec = host.newTabSpec("P.Auto");
-//        spec.setContent(R.id.tab2);
-//        spec.setIndicator("P.Auto");
-//        host.addTab(spec);
-//
-//        Tab 3
-//        spec = host.newTabSpec("RDV Perso");
-//        spec.setContent(R.id.tab3);
-//        spec.setIndicator("RDV PERSO");
-//        host.addTab(spec);
     }
 
     @Override
