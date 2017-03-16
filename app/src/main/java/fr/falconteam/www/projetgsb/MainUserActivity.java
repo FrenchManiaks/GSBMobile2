@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 
 public class MainUserActivity extends AppCompatActivity
@@ -46,6 +47,17 @@ public class MainUserActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        String UtilisateurID = getIntent().getStringExtra("IdUtilisateur");
+
+        Bundle bundle = new Bundle();
+        bundle.putString("UserId", UtilisateurID);
+        // set Fragmentclass Arguments
+        HomeFragment fragobj = new HomeFragment();
+        fragobj.setArguments(bundle);
+
+
+
 
     }
 

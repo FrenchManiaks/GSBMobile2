@@ -13,6 +13,10 @@ import android.view.ViewGroup;
  */
 public class CptRenduFragment extends Fragment {
 
+    String URL= "http://192.168.43.224:80/apigsb/getUtilisateurById.php";
+
+    JSONParser jsonParser=new JSONParser();
+
 
     public CptRenduFragment() {
         // Required empty public constructor

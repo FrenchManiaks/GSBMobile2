@@ -31,10 +31,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <CalendarView
+
+                    <ListView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/calendarView" />
+                        android:layout_height="match_parent"
+                        android:id="@+id/mainLv" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -43,10 +44,10 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <DatePicker
+                    <ListView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/datePicker" />
+                        android:layout_height="match_parent"
+                        android:id="@+id/mainLv2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -55,10 +56,11 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TimePicker
+                    <TextView
+                        android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/timePicker" />
+                        android:id="@+id/UserID" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

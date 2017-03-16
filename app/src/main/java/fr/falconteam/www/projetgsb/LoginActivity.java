@@ -1,5 +1,6 @@
 package fr.falconteam.www.projetgsb;
 
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.R.attr.value;
 import static android.R.id.message;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,7 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText editPassword, editName;
     Button btnSignIn;
 
-    String URL= "http://192.168.43.224:80/gsbtest/login.php";
+
+
+    String URL= "http://192.168.43.224:80/apigsb/login.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -100,9 +104,13 @@ public class LoginActivity extends AppCompatActivity {
 
             return json;
 
+
         }
 
         protected void onPostExecute(JSONObject result) {
+
+
+
 
             // dismiss the dialog once product deleted
             //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
@@ -110,13 +118,20 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 if (result.getString("message").equals("Bienvenue")) {
 
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("UserId", result.getString("id"));
+//                    // set Fragmentclass Arguments
+//                    HomeFragment fragobj = new HomeFragment();
+//                    fragobj.setArguments(bundle);
+
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
+                    intent.putExtra("IdUtilisateur", result.getString("id"));
                     startActivity(intent);
 
                 } else{
 
-                    Toast.makeText(getApplicationContext(), "Mauvais mot de passe ou nom d'utilisateur", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                 }
 
             } catch (JSONException e) {
@@ -125,6 +140,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }
+
+
 
     }
 
