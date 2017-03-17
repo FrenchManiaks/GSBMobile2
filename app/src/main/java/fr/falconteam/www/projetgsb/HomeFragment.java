@@ -98,11 +98,8 @@ public class HomeFragment extends Fragment  {
 
         /*****************************ListView RDV Perso*****************************/
 
-
-        String IDUtilisateur = getArguments().getString("UserId");
-
-
         TextView newtext = (TextView) view.findViewById(R.id.UserID);
+        String IDUtilisateur = getArguments().getString("UserId");
         newtext.setText(IDUtilisateur);
 
         return view;
