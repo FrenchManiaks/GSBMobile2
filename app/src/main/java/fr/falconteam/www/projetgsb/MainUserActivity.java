@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -47,17 +48,6 @@ public class MainUserActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        String UtilisateurID = getIntent().getStringExtra("IdUtilisateur");
-
-        Bundle bundle = new Bundle();
-        bundle.putString("UserId", UtilisateurID);
-        // set Fragmentclass Arguments
-        HomeFragment fragobj = new HomeFragment();
-        fragobj.setArguments(bundle);
-
-
-
 
     }
 

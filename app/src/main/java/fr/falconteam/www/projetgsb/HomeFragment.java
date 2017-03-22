@@ -4,6 +4,7 @@ package fr.falconteam.www.projetgsb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ public class HomeFragment extends Fragment  {
                              Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+
 
         TabHost host = (TabHost)view.findViewById(R.id.tabHost);
         host.setup();
@@ -98,9 +101,9 @@ public class HomeFragment extends Fragment  {
 
         /*****************************ListView RDV Perso*****************************/
 
+        SingletonUser s1 = SingletonUser.getInstance();
         TextView newtext = (TextView) view.findViewById(R.id.UserID);
-        String IDUtilisateur = getArguments().getString("UserId");
-        newtext.setText(IDUtilisateur);
+        newtext.setText(s1.getUserId());
 
         return view;
         }

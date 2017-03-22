@@ -46,8 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //TEST SINGLETON
-        Log.e("Valeur ",SingletonSession.getInstance().getString());
 
         editName=(EditText)findViewById(R.id.editName);
         editPassword=(EditText)findViewById(R.id.editPassword);
@@ -126,7 +124,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
-                    intent.putExtra("IdUtilisateur", result.getString("id"));
+                    SingletonUser s1 = SingletonUser.getInstance();
+                    s1.setUserId(result.getString("id"));
                     startActivity(intent);
 
                 } else{
