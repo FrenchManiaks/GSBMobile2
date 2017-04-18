@@ -2,6 +2,7 @@ package fr.falconteam.www.projetgsb;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URL;
+import java.util.ArrayList;
 
 
 public class MainUserActivity extends AppCompatActivity
@@ -24,11 +34,96 @@ public class MainUserActivity extends AppCompatActivity
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    String rdv_URL = "http://192.168.43.224:80/apigsb/getRdvByIdVisiteur.php";
+
+    JSONParser jsonParser=new JSONParser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
+
+        /**START of :
+         * Fetch data from getRdvByIdVisiteur
+         */
+
+        class getRdv extends AsyncTask<String, String, JSONObject> {
+
+            @Override
+
+            protected void onPreExecute() {
+
+                super.onPreExecute();
+
+            }
+
+            @Override
+
+            protected JSONObject doInBackground(String... args) {
+
+                SingletonUser s1 = SingletonUser.getInstance();
+
+                ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("id_visiteur", s1.getUserId()));
+
+                JSONObject json = jsonParser.makeHttpRequest(rdv_URL, "POST", params);
+
+
+                return json;
+
+
+            }
+
+            protected void onPostExecute(JSONObject result) {
+
+
+
+
+                // dismiss the dialog once product deleted
+                //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+
+                try {
+                    if (result.getString("message").equals("Bienvenue")) {
+
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("UserId", result.getString("id"));
+//                    // set Fragmentclass Arguments
+//                    HomeFragment fragobj = new HomeFragment();
+//                    fragobj.setArguments(bundle);
+
+//                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+//                        Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
+//                        SingletonUser s1 = SingletonUser.getInstance();
+//                        s1.setUserId(result.getString("id"));
+//                        startActivity(intent);
+
+                    } else{
+
+                        Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+        }
+
+
+
+
+
+
+
+        /**ENF of :
+         * Fetch data from getRdvByIdVisiteur
+         */
+
+
+
+
 
         //Set the fragment init
         HomeFragment fragment = new HomeFragment();
