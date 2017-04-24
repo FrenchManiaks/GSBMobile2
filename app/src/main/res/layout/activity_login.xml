@@ -17,11 +17,11 @@
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/gsb3_e1475763703719"
         android:id="@+id/imageView2"
-        android:layout_above="@+id/editName"
+        android:layout_above="@+id/login"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp" />
 
-    <EditText android:id="@+id/editName"
+    <EditText android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:hint="@string/username"
@@ -30,25 +30,26 @@
     android:fontFamily="sans-serif-light"
     android:focusable="true"
     android:focusableInTouchMode="true"
-        android:layout_above="@+id/editPassword"
+        android:layout_above="@+id/password"
         android:layout_alignParentStart="true"
         android:textAllCaps="false"
         android:singleLine="true"
         android:text="pgsb.ngsb" />
 
-    <EditText android:id="@+id/editPassword"
+    <EditText
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="#A0192133"
-        android:fontFamily="sans-serif-light"
-        android:hint="@string/password"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:text="25-sep-1994" />
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:text="25-sep-1994"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="#A0192133" />
 
     <Button
         android:layout_width="match_parent"
@@ -57,7 +58,7 @@
         android:text="@string/login"
         android:textStyle="bold"
         android:backgroundTint="@color/colorPrimaryDark"
-        android:layout_below="@+id/editPassword"
+        android:layout_below="@+id/password"
         android:layout_alignParentStart="true"
         android:layout_marginTop="13dp"
         android:layout_height="65dp" />

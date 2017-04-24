@@ -1,36 +1,37 @@
 package fr.falconteam.www.projetgsb;
 
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.widget.TextView;
 import android.widget.Toast;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText editPassword, editName;
+    EditText login, password;
     Button btnSignIn;
+    private RequestQueue requestQueue;
+    private StringRequest request;
 
 
-
-    String URL= "http://192.168.43.224:80/apigsb/login.php";
-
-    JSONParser jsonParser=new JSONParser();
-
-    int i=0;
-
-
+    String URL = "http://192.168.43.224:80/apigsb/login.php";
 
 
     @Override
@@ -38,88 +39,58 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        login = (EditText) findViewById(R.id.login);
+        password = (EditText) findViewById(R.id.password);
 
-        editName=(EditText)findViewById(R.id.editName);
-        editPassword=(EditText)findViewById(R.id.editPassword);
-        final TextView fpasswordLink = (TextView) findViewById(R.id.tvFPassword);
 
-        btnSignIn=(Button)findViewById(R.id.btnSignIn);
+        btnSignIn = (Button) findViewById(R.id.btnSignIn);
 
-        fpasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent fpasswordIntent = new Intent(LoginActivity.this, fPasswordActivity.class);
-                LoginActivity.this.startActivity(fpasswordIntent);
-            }
-        });
+        requestQueue = Volley.newRequestQueue(this);
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AttemptLogin attemptLogin= new AttemptLogin();
-                attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
+                request = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getString("message").equals("Bienvenue")) {
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
+                                SingletonUser s1 = SingletonUser.getInstance();
+                                s1.setUserId(jsonObject.getString("id"));
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        HashMap<String, String> hashmap = new HashMap<String, String>();
+                        hashmap.put("login", login.getText().toString());
+                        hashmap.put("mdp", password.getText().toString());
+
+                        return hashmap;
+
+
+                    }
+                };
+                requestQueue.add(request);
             }
         });
-
-    }
-
-    private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
-
-        @Override
-
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-
-        }
-
-        @Override
-
-        protected JSONObject doInBackground(String... args) {
-
-
-            String mdp = args[1];
-            String login= args[0];
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("login", login));
-            params.add(new BasicNameValuePair("mdp", mdp));
-
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
-
-
-            return json;
-
-
-        }
-
-        protected void onPostExecute(JSONObject result) {
-
-
-
-            try {
-                if (result.getString("message").equals("Bienvenue")) {
-
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), MainUserActivity.class);
-                    SingletonUser s1 = SingletonUser.getInstance();
-                    s1.setUserId(result.getString("id"));
-                    startActivity(intent);
-
-                } else{
-
-                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-
-        }
-
-
 
     }
 
