@@ -47,6 +47,7 @@ public class MainUserActivity extends AppCompatActivity
          * Fetch data from getRdvByIdVisiteur
          */
 
+
         class getRdv extends AsyncTask<String, String, JSONObject> {
 
             @Override
@@ -117,7 +118,7 @@ public class MainUserActivity extends AppCompatActivity
 
 
 
-        /**ENF of :
+        /**END of :
          * Fetch data from getRdvByIdVisiteur
          */
 
