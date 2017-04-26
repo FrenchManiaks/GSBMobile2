@@ -21,20 +21,21 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp" />
 
-    <EditText android:id="@+id/login"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="@string/username"
-    android:textColor="@color/colorPrimaryDark"
-    android:textColorHint="#A0192133"
-    android:fontFamily="sans-serif-light"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
+    <EditText
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/password"
         android:layout_alignParentStart="true"
-        android:textAllCaps="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/username"
         android:singleLine="true"
-        android:text="pgsb.ngsb" />
+        android:text="user"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="#A0192133" />
 
     <EditText
         android:id="@+id/password"
@@ -47,7 +48,7 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="25-sep-1994"
+        android:text="user"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="#A0192133" />
 
@@ -62,18 +63,5 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="13dp"
         android:layout_height="65dp" />
-
-    <TextView
-        android:text="@string/forget_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvFPassword"
-        android:textColor="@android:color/holo_red_light"
-        android:textAlignment="center"
-        android:textStyle="normal|italic"
-        android:textSize="16sp"
-        android:layout_marginBottom="110dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

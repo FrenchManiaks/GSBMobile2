@@ -22,9 +22,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".fPasswordActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MainUserActivity"
             android:label="@string/title_activity_main_user"
             android:screenOrientation="portrait"
