@@ -68,7 +68,6 @@ public class MainUserActivity extends AppCompatActivity
                     JSONArray jsonArrayrv = new JSONArray(response);
                     JSONObject jsonObjectrdv = jsonArrayrv.getJSONObject(0);
                     if (jsonObjectrdv.has("id")) {
-                        Toast.makeText(getApplicationContext(), jsonObjectrdv.getString("date"), Toast.LENGTH_LONG).show();
                         SingletonUser s1 = SingletonUser.getInstance();
                         s1.setRdvId(jsonObjectrdv.getString("id"));
                         s1.setRdvDate(jsonObjectrdv.getString("date"));
@@ -81,6 +80,7 @@ public class MainUserActivity extends AppCompatActivity
                                 s1.setRdvNomPraticien(jsonObjectPraticien.getString("nom"));
                                 s1.setRdvPTelFixe(jsonObjectPraticien.getString("telephone_fixe"));
                                 s1.setRdvPTelPortable(jsonObjectPraticien.getString("telephone_portable"));
+                                s1.setRdvPMail(jsonObjectPraticien.getString("mail"));
                             }else{
                                 Toast.makeText(getApplicationContext(), "ERROR Get Praticien", Toast.LENGTH_LONG).show();
                             }

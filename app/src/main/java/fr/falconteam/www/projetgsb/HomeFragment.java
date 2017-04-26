@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment  {
 
         TabHost host = (TabHost)view.findViewById(R.id.tabHost);
         host.setup();
+        SingletonUser s1 = SingletonUser.getInstance();
 
         //Tab 1
         TabHost.TabSpec spec = host.newTabSpec("Tab One");
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment  {
 
 
 
-        String[] menuItems = {"Affiche quelque chose",
+        String[] menuItems = {"Le " + s1.getRdvDate()+" Avec "+s1.getRdvNomPraticien(),
                                 "Affiche quelque chose d'autre",
                                 "Bon, maintenant il faut afficher les info de la BDD"};
 
@@ -95,7 +96,7 @@ public class HomeFragment extends Fragment  {
         /*****************************ListView RDV Perso*****************************/
 
 
-        SingletonUser s1 = SingletonUser.getInstance();
+
             TextView newtext = (TextView) view.findViewById(R.id.UserID);
             newtext.setText(s1.getRdvId());
 

@@ -22,6 +22,7 @@ public class SingletonUser {
     public String RdvLieuAdresse;
     public String RdvLieuCP;
     public String RdvLieuVille;
+    public String RdvPMail;
 
 
     private SingletonUser() {
@@ -100,6 +101,15 @@ public class SingletonUser {
 
     public String getRdvPTelPortable(){
         return RdvPTelPortable;
+    }
+
+    public void setRdvPMail(String setter){
+        RdvPMail = setter;
+
+    }
+
+    public String GetRdvPMail(){
+        return RdvPMail;
     }
 
     public void setRdvPraticien(String setter){
