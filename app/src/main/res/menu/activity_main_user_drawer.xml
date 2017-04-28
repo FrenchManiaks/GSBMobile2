@@ -3,9 +3,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_acceuil"
+            android:id="@+id/nav_RdvPerso"
             android:icon="@drawable/nav_home"
-            android:title="Acceuil" />
+            android:title="Rendez-vous Personnels" />
         <item
             android:id="@+id/nav_gestionfrais"
             android:icon="@drawable/nav_gestionfrais"
@@ -15,9 +15,9 @@
             android:icon="@drawable/cptrendu"
             android:title="Comptes rendus" />
         <item
-            android:id="@+id/nav_agcommun"
-            android:icon="@drawable/agdcommun"
-            android:title="Agenda commun" />
+            android:id="@+id/nav_ParcAuto"
+            android:icon="@drawable/parcauto"
+            android:title="Parc Auto" />
     </group>
 
     <item android:title="Assistance"

@@ -6,6 +6,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -13,7 +33,11 @@ import android.view.ViewGroup;
  */
 public class CptRenduFragment extends Fragment {
 
-    String URL= "http://192.168.43.224:80/apigsb/getUtilisateurById.php";
+    String URL_CptRendu = "http://192.168.43.224/apigsb/getcompterendubyid.php";
+    EditText CptRenduID;
+    Button SendCptRendu;
+    private RequestQueue requestQueue;
+    private StringRequest request;
 
 
 
@@ -25,8 +49,66 @@ public class CptRenduFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cpt_rendu, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_cpt_rendu, container, false);
+
+
+        CptRenduID = (EditText) view.findViewById(R.id.etCptRendu);
+        SendCptRendu = (Button) view.findViewById(R.id.bCptRendu);
+
+        final SingletonUser s1 = SingletonUser.getInstance();
+
+
+        requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        SendCptRendu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                request = new StringRequest(Request.Method.POST, URL_CptRendu, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.has("id")) {
+                                Toast.makeText(getActivity(), "Le compte rendu est en train de charger.", Toast.LENGTH_LONG).show();
+                            }
+                            if (jsonObject.getString("message").equals("Ce numero de compte rendu n'existe pas.")){
+                                Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+
+                            }
+
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        HashMap<String, String> hashmap = new HashMap<String, String>();
+                        hashmap.put("compte_rendu_id", CptRenduID.getText().toString());
+                        return hashmap;
+
+
+                    }
+                };
+                requestQueue.add(request);
+            }
+        });
+
+
+
+
+
+
+        return view;
     }
 
 }

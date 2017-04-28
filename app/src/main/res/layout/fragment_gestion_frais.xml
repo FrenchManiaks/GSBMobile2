@@ -28,13 +28,14 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/sTypeFrais"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="74dp"
             android:text="Selectionnez la date"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -60,12 +61,14 @@
             android:textAllCaps="true"
             android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/sTypeFrais"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/edTypeFrais"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/etDateFrais"
             android:layout_below="@+id/textView2"
-            android:layout_alignParentStart="true" />
+            android:ems="10"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/etDateFrais"
@@ -104,5 +107,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
             android:text="Envoyer" />
+
     </RelativeLayout>
 </FrameLayout>
