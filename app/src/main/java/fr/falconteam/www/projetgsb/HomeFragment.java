@@ -82,19 +82,7 @@ public class HomeFragment extends Fragment  {
 
 
 
-        String[] menuItems = {"Rendez-vous avec " +s1.getRdvNomPraticien() + " " +s1.getRdvPrenomPraticien()+ " le "+ s1.getRdvDate(),
-                                "Affiche quelque chose d'autre",
-                                "Bon, maintenant il faut afficher les info de la BDD"};
 
-        ListView listView = (ListView) view.findViewById(R.id.RdvListView);
-
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                menuItems
-        );
-
-        listView.setAdapter(listViewAdapter);
 
 
 
@@ -146,8 +134,6 @@ public class HomeFragment extends Fragment  {
                             s1.setRdvPTelFixe(jsonObjectPraticien.getString("telephone_fixe"));
                             s1.setRdvPTelPortable(jsonObjectPraticien.getString("telephone_portable"));
                             s1.setRdvPMail(jsonObjectPraticien.getString("mail"));
-                        }else{
-//                            Toast.makeText(getApplicationContext(), "ERROR Get Praticien", Toast.LENGTH_LONG).show();
                         }
                         s1.setRdvLieu(jsonObjectrdv.getString("lieu"));
                         JSONObject jsonObjectlieu = new JSONObject(s1.getRdvLieu());
@@ -156,12 +142,35 @@ public class HomeFragment extends Fragment  {
                             s1.setRdvLieuAdresse(jsonObjectlieu.getString("adresse"));
                             s1.setRdvLieuCP(jsonObjectlieu.getString("cp"));
                             s1.setRdvLieuCP(jsonObjectlieu.getString("ville"));
-                        }else{
-//                            Toast.makeText(getApplicationContext(), "ERROR Get Lieu", Toast.LENGTH_LONG).show();
                         }
 
+                        String[] menuItems = {"Rendez-vous avec " +s1.getRdvNomPraticien() + " " +s1.getRdvPrenomPraticien()+ " le "+ s1.getRdvDate(),
+                                "Affiche quelque chose d'autre",
+                                "Bon, maintenant il faut afficher les info de la BDD"};
+
+                        ListView listView = (ListView) view.findViewById(R.id.RdvListView);
+
+                        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
+                                getActivity(),
+                                android.R.layout.simple_list_item_1,
+                                menuItems
+                        );
+
+                        listView.setAdapter(listViewAdapter);
+
                     } else {
-//                        Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_LONG).show();
+
+                        String[] menuItems = {"Vous n'avez pas de rendez-vous actuellement."};
+
+                        ListView listView = (ListView) view.findViewById(R.id.RdvListView);
+
+                        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
+                                getActivity(),
+                                android.R.layout.simple_list_item_1,
+                                menuItems
+                        );
+
+                        listView.setAdapter(listViewAdapter);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

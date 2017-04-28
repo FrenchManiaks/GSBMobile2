@@ -1,6 +1,7 @@
 package fr.falconteam.www.projetgsb;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -69,12 +70,36 @@ public class CptRenduFragment extends Fragment {
                     public void onResponse(String response) {
 
                         try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            if (jsonObject.has("id")) {
+//                            JSONArray jsonArrayrcpt= new JSONArray(response);
+//                            JSONObject jsonObjectCpt = jsonArrayrcpt.getJSONObject(0);
+                            JSONObject jsonObjectCpt = new JSONObject(response);
+                            if (jsonObjectCpt.has("id")) {
                                 Toast.makeText(getActivity(), "Le compte rendu est en train de charger.", Toast.LENGTH_LONG).show();
+                                SingleTonCptRendu s2 = SingleTonCptRendu.getInstance();
+                                s2.setCptId(jsonObjectCpt.getString("id"));
+                                s2.setCptDate(jsonObjectCpt.getString("date"));
+                                s2.setCptbilan(jsonObjectCpt.getString("bilan"));
+                                s2.setCptCoefConfiance(jsonObjectCpt.getString("coef_confiance"));
+                                s2.setCptCoefNoto(jsonObjectCpt.getString("coef_notoriete"));
+                                s2.setCptCoefPrescription(jsonObjectCpt.getString("coef_prescription"));
+                                s2.setCptMotif(jsonObjectCpt.getString("motif"));
+                                JSONObject jsonObjectMotif = new JSONObject(s2.getCptMotif());
+                                    if (jsonObjectMotif.has("id")){
+                                        s2.setMotifLibelle(jsonObjectMotif.getString("libelle"));
+                                        s2.setMotifDescription(jsonObjectMotif.getString("description"));
+                                    }
+                                s2.setCptEchantillon(jsonObjectCpt.getString("echantillons"));
+//                                JSONObject jsonObjectEchantillon = new JSONObject(s2.getCptEchantillon());
+//                                    if (jsonObjectEchantillon.has("id")){
+//                                        s2.setEchantillonId(jsonObjectEchantillon.getString("id"));
+//                                        s2.setEchantillonQte(jsonObjectEchantillon.getString("qte"));
+//                                    }
+                                Intent intent = new Intent(getActivity(), AffichageCompteRendu.class);
+                                startActivity(intent);
+
                             }
-                            if (jsonObject.getString("message").equals("Ce numero de compte rendu n'existe pas.")){
-                                Toast.makeText(getActivity(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+                            if (jsonObjectCpt.getString("message").equals("Ce numero de compte rendu n'existe pas.")){
+                                Toast.makeText(getActivity(), jsonObjectCpt.getString("message"), Toast.LENGTH_LONG).show();
 
                             }
 

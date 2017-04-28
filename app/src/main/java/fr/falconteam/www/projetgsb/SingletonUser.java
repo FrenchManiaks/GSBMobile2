@@ -29,6 +29,8 @@ public class SingletonUser {
 
     }
 
+
+
     public String getUserId()
     {
         return idUser;
