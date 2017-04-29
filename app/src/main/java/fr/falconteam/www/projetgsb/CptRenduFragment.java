@@ -34,7 +34,9 @@ import java.util.Map;
  */
 public class CptRenduFragment extends Fragment {
 
-    String URL_CptRendu = "http://192.168.43.224/apigsb/getcompterendubyid.php";
+    SingletonUser s1 = SingletonUser.getInstance();
+
+    String URL_CptRendu = s1.getAdresseIP() +"getcompterendubyid.php";
     EditText CptRenduID;
     Button SendCptRendu;
     private RequestQueue requestQueue;

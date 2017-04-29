@@ -23,13 +23,16 @@ public class SingletonUser {
     public String RdvLieuCP;
     public String RdvLieuVille;
     public String RdvPMail;
+    public String AdresseIP = "http://192.168.43.224/apigsb/";
 
 
     private SingletonUser() {
 
     }
 
-
+    public String getAdresseIP(){
+        return AdresseIP;
+    }
 
     public String getUserId()
     {

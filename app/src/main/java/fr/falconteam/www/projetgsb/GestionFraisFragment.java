@@ -35,7 +35,9 @@ public class GestionFraisFragment extends Fragment {
         // Required empty public constructor
     }
 
-    String URL_Frais = "http://192.168.43.224:80/apigsb/addfrais.php";
+    SingletonUser s1 = SingletonUser.getInstance();
+
+    String URL_Frais = s1.getAdresseIP() +"addfrais.php";
     String userid;
     Button sendData;
     EditText TypeFrais, DateFrais, MontantFrais, CommentaireFrais;

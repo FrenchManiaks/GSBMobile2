@@ -31,7 +31,9 @@ public class LoginActivity extends AppCompatActivity {
     private StringRequest request;
 
 
-    String URL = "http://192.168.43.224:80/apigsb/login.php";
+SingletonUser s1 = SingletonUser.getInstance();
+
+    String URL = s1.getAdresseIP() + "login.php";
 
 
     @Override

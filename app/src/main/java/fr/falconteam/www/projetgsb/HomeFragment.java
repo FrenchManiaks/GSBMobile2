@@ -7,12 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TabHost;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -39,8 +34,9 @@ public class HomeFragment extends Fragment  {
     public HomeFragment() {
         // Required empty public constructor
     }
+    SingletonUser s1 = SingletonUser.getInstance();
 
-    String rdv_URL = "http://192.168.43.224:80/apigsb/getRdvByIdVisiteur.php";
+    String rdv_URL = s1.getAdresseIP() +"getRdvByIdVisiteur.php";
     String userid;
     private RequestQueue requestQueue;
     private StringRequest request;
