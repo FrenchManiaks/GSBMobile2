@@ -17,10 +17,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import junit.framework.Test;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,27 +123,50 @@ public class HomeFragment extends Fragment  {
                     JSONObject jsonObjectrdv = jsonArrayrv.getJSONObject(0);
                     if (jsonObjectrdv.has("id")) {
                         SingletonUser s1 = SingletonUser.getInstance();
-                        s1.setRdvId(jsonObjectrdv.getString("id"));
-                        s1.setRdvDate(jsonObjectrdv.getString("date"));
-                        s1.setRdvInfo(jsonObjectrdv.getString("description"));
-                        s1.setRdvPraticien(jsonObjectrdv.getString("praticien"));
-                        JSONObject jsonObjectPraticien = new JSONObject(s1.getRdvPraticien());
-                        if (jsonObjectPraticien.has("id")){
+                        ArrayList<String> idlist = new ArrayList<>();
+                        ArrayList<String> DateList = new ArrayList<>();
+                        ArrayList<String> NomList = new ArrayList<>();
+                        ArrayList<String> PrenomList = new ArrayList<>();
+                        ArrayList<String> TestList = new ArrayList<>();
 
-                            s1.setRdvPrenomPraticien(jsonObjectPraticien.getString("prenom"));
-                            s1.setRdvNomPraticien(jsonObjectPraticien.getString("nom"));
-                            s1.setRdvPTelFixe(jsonObjectPraticien.getString("telephone_fixe"));
-                            s1.setRdvPTelPortable(jsonObjectPraticien.getString("telephone_portable"));
-                            s1.setRdvPMail(jsonObjectPraticien.getString("mail"));
+                        for (int i = 0; i < jsonArrayrv.length() ; i++){
+                            JSONObject jsonObjectId = jsonArrayrv.getJSONObject(i);
+                            idlist.add(jsonObjectId.getString("id"));
+                            DateList.add(jsonObjectId.getString("date"));
+                            s1.setRdvId(idlist);
+                            s1.setRdvDate(DateList);
                         }
-                        s1.setRdvLieu(jsonObjectrdv.getString("lieu"));
-                        JSONObject jsonObjectlieu = new JSONObject(s1.getRdvLieu());
-                        if (jsonObjectlieu.has("libelle")){
-                            s1.setRdvLieuLibelle(jsonObjectlieu.getString("libelle"));
-                            s1.setRdvLieuAdresse(jsonObjectlieu.getString("adresse"));
-                            s1.setRdvLieuCP(jsonObjectlieu.getString("cp"));
-                            s1.setRdvLieuCP(jsonObjectlieu.getString("ville"));
+                        s1.setRdvInfo(jsonObjectrdv.getString("description"));
+
+                        for (int i = 0; i < jsonArrayrv.length(); i++){
+                            JSONObject jsonObjecttes = jsonArrayrv.getJSONObject(i);
+                            TestList.add(jsonObjecttes.getString("praticien"));
+//                            s1.setRdvPraticien(TestList);
+
                         }
+//                        JSONArray jsonArrayPraticien = new JSONArray(TestList);
+
+//                        if (jsonObjectPraticien.has("id")){
+
+//                        for (int j = 0 ; j < TestList.size(); j++){
+//                            NomList.add(jsonObjectPraticien.getString("nom"));
+//                            PrenomList.add(jsonObjectPraticien.getString("prenom"));
+//                            s1.setRdvPrenomPraticien(PrenomList);
+//                            s1.setRdvNomPraticien(NomList);
+//                        }
+
+//                            s1.setRdvPTelFixe(jsonObjectPraticien.getString("telephone_fixe"));
+//                            s1.setRdvPTelPortable(jsonObjectPraticien.getString("telephone_portable"));
+//                            s1.setRdvPMail(jsonObjectPraticien.getString("mail"));
+//                        }
+//                        s1.setRdvLieu(jsonObjectrdv.getString("lieu"));
+//                        JSONObject jsonObjectlieu = new JSONObject(s1.getRdvLieu());
+//                        if (jsonObjectlieu.has("libelle")){
+//                            s1.setRdvLieuLibelle(jsonObjectlieu.getString("libelle"));
+//                            s1.setRdvLieuAdresse(jsonObjectlieu.getString("adresse"));
+//                            s1.setRdvLieuCP(jsonObjectlieu.getString("cp"));
+//                            s1.setRdvLieuCP(jsonObjectlieu.getString("ville"));
+//                        }
 
                         String[] menuItems = {"Rendez-vous avec " +s1.getRdvNomPraticien() + " " +s1.getRdvPrenomPraticien()+ " le "+ s1.getRdvDate(),
                                 "Affiche quelque chose d'autre",

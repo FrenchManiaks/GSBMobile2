@@ -91,11 +91,12 @@ public class CptRenduFragment extends Fragment {
                                         s2.setMotifDescription(jsonObjectMotif.getString("description"));
                                     }
                                 s2.setCptEchantillon(jsonObjectCpt.getString("echantillons"));
-//                                JSONObject jsonObjectEchantillon = new JSONObject(s2.getCptEchantillon());
-//                                    if (jsonObjectEchantillon.has("id")){
-//                                        s2.setEchantillonId(jsonObjectEchantillon.getString("id"));
-//                                        s2.setEchantillonQte(jsonObjectEchantillon.getString("qte"));
-//                                    }
+                                JSONArray jsonArrayEchantillon = new JSONArray(s2.getCptEchantillon());
+                                JSONObject jsonObjectEchantillon = jsonArrayEchantillon.getJSONObject(0);
+                                    if (jsonObjectEchantillon.has("id")){
+                                        s2.setEchantillonId(jsonObjectEchantillon.getString("id"));
+                                        s2.setEchantillonQte(jsonObjectEchantillon.getString("qte"));
+                                    }
                                 Intent intent = new Intent(getActivity(), AffichageCompteRendu.class);
                                 startActivity(intent);
 

@@ -1,5 +1,7 @@
 package fr.falconteam.www.projetgsb;
 
+import java.util.ArrayList;
+
 /**
  * Created by Matias on 22/03/2017.
  */
@@ -9,12 +11,12 @@ public class SingletonUser {
     public static SingletonUser getInstance() { return ourInstance; }
 
     public String idUser;
-    public String idRdv;
-    public String RdvDate;
+    public ArrayList idRdv;
+    public ArrayList RdvDate;
     public String Rdvinfo;
-    public String RdvNomPraticien;
-    public String RdvPrenomPraticien;
-    public String RdvPraticien;
+    public ArrayList RdvNomPraticien;
+    public ArrayList RdvPrenomPraticien;
+    public ArrayList RdvPraticien;
     public String RdvPTelFixe;
     public String RdvPTelPortable;
     public String RdvLieu;
@@ -23,7 +25,7 @@ public class SingletonUser {
     public String RdvLieuCP;
     public String RdvLieuVille;
     public String RdvPMail;
-    public String AdresseIP = "http://192.168.43.224/apigsb/";
+    public String AdresseIP = "http://192.168.43.224:80/apigsb/";
 
 
     private SingletonUser() {
@@ -44,22 +46,22 @@ public class SingletonUser {
         idUser = setter;
     }
 
-    public void setRdvId(String setter)
+    public void setRdvId(ArrayList setter)
     {
         idRdv = setter;
     }
 
-    public String getRdvId()
+    public ArrayList getRdvId()
     {
         return idRdv;
     }
 
-    public void setRdvDate(String setter){
+    public void setRdvDate(ArrayList setter){
         RdvDate = setter;
 
     }
 
-    public String getRdvDate(){
+    public ArrayList getRdvDate(){
         return RdvDate;
     }
 
@@ -68,25 +70,25 @@ public class SingletonUser {
 
     }
 
-    public String gerRdvInfo(){
+    public String getRdvInfo(){
         return Rdvinfo;
     }
 
-    public void setRdvNomPraticien(String setter){
+    public void setRdvNomPraticien(ArrayList setter){
         RdvNomPraticien = setter;
 
     }
 
-    public String getRdvNomPraticien(){
+    public ArrayList getRdvNomPraticien(){
         return RdvNomPraticien;
     }
 
-    public void setRdvPrenomPraticien(String setter){
+    public void setRdvPrenomPraticien(ArrayList setter){
         RdvPrenomPraticien = setter;
 
     }
 
-    public String getRdvPrenomPraticien(){
+    public ArrayList getRdvPrenomPraticien(){
         return RdvPrenomPraticien;
     }
 
@@ -117,12 +119,12 @@ public class SingletonUser {
         return RdvPMail;
     }
 
-    public void setRdvPraticien(String setter){
+    public void setRdvPraticien(ArrayList setter){
         RdvPraticien = setter;
 
     }
 
-    public String getRdvPraticien(){
+    public ArrayList getRdvPraticien(){
         return RdvPraticien;
     }
 
