@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,10 +72,13 @@ public class GestionFraisFragment extends Fragment {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            if (jsonObject != null) {
-                                Toast.makeText(getActivity(), jsonObject.getString("Le frais a bien été ajouté."), Toast.LENGTH_LONG).show();
+//                            JSONObject jsonObject = new JSONObject(response);
+
+//                            boolean error = jsonObject.getBoolean(response);
+                            if (jsonObject.equals(true)) {
+                                Toast.makeText(getActivity(), "Erreur, le frais n'as pas pu être envoyé.", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(getActivity(), jsonObject.getString("Erreur, le frais n'as pas pu être envoyé."), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(),  "Le frais a bien été ajouté.",Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

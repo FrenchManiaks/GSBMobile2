@@ -41,6 +41,7 @@ SingletonUser s1 = SingletonUser.getInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         login = (EditText) findViewById(R.id.login);
         password = (EditText) findViewById(R.id.password);
 

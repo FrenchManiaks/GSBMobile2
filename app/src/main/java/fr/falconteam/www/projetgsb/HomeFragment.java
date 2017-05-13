@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,6 +27,8 @@ import org.json.JSONStringer;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,56 +56,7 @@ public class HomeFragment extends Fragment  {
 
         final View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-//        TabHost host = (TabHost)view.findViewById(R.id.tabHost);
-//        host.setup();
         SingletonUser s1 = SingletonUser.getInstance();
-//
-//        //Tab 1
-//        TabHost.TabSpec spec = host.newTabSpec("Tab One");
-//        spec.setContent(R.id.tab1);
-//        spec.setIndicator("RDV Perso");
-//        host.addTab(spec);
-
-//        //Tab 2
-//        spec = host.newTabSpec("Tab Two");
-//        spec.setContent(R.id.tab2);
-//        spec.setIndicator("");
-//        host.addTab(spec);
-
-        //Tab 3
-//        spec = host.newTabSpec("Tab Three");
-//        spec.setContent(R.id.tab3);
-//        spec.setIndicator("RDV Perso");
-//        host.addTab(spec);
-
-
-
-        //ListView
-
-        /*****************************ListView Activités*****************************/
-
-
-
-
-
-
-
-        /*****************************ListView Parc Auto*****************************/
-
-//        String[] menuItems2 = {"Affiche quelque chose 2",
-//                "Affiche quelque chose d'autre 2",
-//                "Bon, maintenant il faut afficher les info de la BDD"};
-//
-//        ListView listView2 = (ListView) view.findViewById(R.id.mainLv2);
-//
-//        ArrayAdapter<String> listViewAdapter2 = new ArrayAdapter<String>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,
-//                menuItems2
-//        );
-//
-//        listView2.setAdapter(listViewAdapter2);
-
 
 
         /*****************************ListView RDV Perso*****************************/
@@ -128,6 +82,9 @@ public class HomeFragment extends Fragment  {
                         ArrayList<String> NomList = new ArrayList<>();
                         ArrayList<String> PrenomList = new ArrayList<>();
                         ArrayList<String> TestList = new ArrayList<>();
+                        ArrayList<String> RdvList = new ArrayList<>();
+
+                        ArrayList <String> test = new ArrayList<>();
 
                         for (int i = 0; i < jsonArrayrv.length() ; i++){
                             JSONObject jsonObjectId = jsonArrayrv.getJSONObject(i);
@@ -135,52 +92,54 @@ public class HomeFragment extends Fragment  {
                             DateList.add(jsonObjectId.getString("date"));
                             s1.setRdvId(idlist);
                             s1.setRdvDate(DateList);
+
+
+
+
+                            /**TEST
+                             *
+                             */
+
+                            s1.setRdvInfo(jsonObjectrdv.getString("description"));
+                                JSONObject jsonObjecttes = jsonArrayrv.getJSONObject(i);
+                                TestList.add(jsonObjecttes.getString("praticien"));
+
+                            JSONArray jsonArrayPraticien = new JSONArray(TestList);
+
+                                    JSONObject jsonObject = new JSONObject(jsonArrayPraticien.getString(i));
+                                    NomList.add(jsonObject.getString("nom"));
+                                    PrenomList.add(jsonObject.getString("prenom"));
+
+                                    RdvList.add(DateList + " Avec "+ NomList + " " + PrenomList);
+
+                                    s1.setRdvPrenomPraticien(PrenomList);
+                                    s1.setRdvNomPraticien(NomList);
+
+                            test.add("N°" + jsonObjectId.getString("id") + "_ Le " + jsonObjectId.getString("date") +
+                            "\n Avec Mr./Mme." + jsonObject.getString("nom") + " " + jsonObject.getString("prenom"));
+
+//                                }
+
                         }
-                        s1.setRdvInfo(jsonObjectrdv.getString("description"));
 
-                        for (int i = 0; i < jsonArrayrv.length(); i++){
-                            JSONObject jsonObjecttes = jsonArrayrv.getJSONObject(i);
-                            TestList.add(jsonObjecttes.getString("praticien"));
-//                            s1.setRdvPraticien(TestList);
 
-                        }
-//                        JSONArray jsonArrayPraticien = new JSONArray(TestList);
+                        final ListView listView = (ListView) view.findViewById(R.id.RdvListView);
 
-//                        if (jsonObjectPraticien.has("id")){
-
-//                        for (int j = 0 ; j < TestList.size(); j++){
-//                            NomList.add(jsonObjectPraticien.getString("nom"));
-//                            PrenomList.add(jsonObjectPraticien.getString("prenom"));
-//                            s1.setRdvPrenomPraticien(PrenomList);
-//                            s1.setRdvNomPraticien(NomList);
-//                        }
-
-//                            s1.setRdvPTelFixe(jsonObjectPraticien.getString("telephone_fixe"));
-//                            s1.setRdvPTelPortable(jsonObjectPraticien.getString("telephone_portable"));
-//                            s1.setRdvPMail(jsonObjectPraticien.getString("mail"));
-//                        }
-//                        s1.setRdvLieu(jsonObjectrdv.getString("lieu"));
-//                        JSONObject jsonObjectlieu = new JSONObject(s1.getRdvLieu());
-//                        if (jsonObjectlieu.has("libelle")){
-//                            s1.setRdvLieuLibelle(jsonObjectlieu.getString("libelle"));
-//                            s1.setRdvLieuAdresse(jsonObjectlieu.getString("adresse"));
-//                            s1.setRdvLieuCP(jsonObjectlieu.getString("cp"));
-//                            s1.setRdvLieuCP(jsonObjectlieu.getString("ville"));
-//                        }
-
-                        String[] menuItems = {"Rendez-vous avec " +s1.getRdvNomPraticien() + " " +s1.getRdvPrenomPraticien()+ " le "+ s1.getRdvDate(),
-                                "Affiche quelque chose d'autre",
-                                "Bon, maintenant il faut afficher les info de la BDD"};
-
-                        ListView listView = (ListView) view.findViewById(R.id.RdvListView);
 
                         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                                 getActivity(),
                                 android.R.layout.simple_list_item_1,
-                                menuItems
+                                test
                         );
 
                         listView.setAdapter(listViewAdapter);
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
+                                String selectedFromList =(String) (listView.getItemAtPosition(myItemInt));
+
+                            }
+                        });
 
                     } else {
 

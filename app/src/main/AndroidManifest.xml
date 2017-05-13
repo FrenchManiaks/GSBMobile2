@@ -26,7 +26,8 @@
             android:label="@string/title_activity_main_user"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AffichageCompteRendu"></activity>
+        <activity android:name=".AffichageCompteRendu" />
+        <activity android:name=".AffichageRdv"></activity>
     </application>
 
 </manifest>
