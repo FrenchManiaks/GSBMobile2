@@ -26,6 +26,8 @@ public class SingletonUser {
     public String RdvLieuVille;
     public String RdvPMail;
     public String AdresseIP = "http://192.168.43.224:80/apigsb/";
+    public String result;
+    public String resultDate;
 
 
     private SingletonUser() {
@@ -170,6 +172,22 @@ public class SingletonUser {
 
     public String getRdvLieuVille(){
         return RdvLieuVille;
+    }
+
+    public void setResult(String setter){
+        result = setter;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResultDate(String setter){
+        resultDate = setter;
+    }
+
+    public String getResultDate() {
+        return resultDate;
     }
 
 }

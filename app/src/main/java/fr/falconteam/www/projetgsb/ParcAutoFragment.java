@@ -103,17 +103,24 @@ public class ParcAutoFragment extends Fragment {
                                     }
 
 
+//                                    String[] menuItems = {"TEST."};
 
-//                        ListView listView = (ListView) view.findViewById(R.id.lvParcAuto);
-//
-//
-//                        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-//                                getActivity(),
-//                                android.R.layout.simple_list_item_1,
-//                                Type
-//                        );
-//
-//                        listView.setAdapter(listViewAdapter);
+                                    ListView listView = (ListView) view.findViewById(R.id.lvParcAuto);
+
+//                                    ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
+//                                            getActivity(),
+//                                            android.R.layout.simple_list_item_1,
+//                                            menuItems
+//                                    );
+
+                                    String[] values = new String[] { "Message1", "Message2", "Message3" };
+                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                            android.R.layout.simple_list_item_1, values);
+                                    listView.setAdapter(adapter);
+
+//                                    listView.setAdapter(listViewAdapter);
+                                } else {
+
                                     String[] menuItems = {"Vous n'avez pas de rendez-vous actuellement."};
 
                                     ListView listView = (ListView) view.findViewById(R.id.lvParcAuto);
@@ -124,21 +131,7 @@ public class ParcAutoFragment extends Fragment {
                                             menuItems
                                     );
 
-                                    listView.setAdapter(listViewAdapter);
-
-                                } else {
-
-                                    String[] menuItems = {"Vous n'avez pas de rendez-vous actuellement."};
-
-                                    ListView listView = (ListView) view.findViewById(R.id.RdvListView);
-
-                                    ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                                            getActivity(),
-                                            android.R.layout.simple_list_item_1,
-                                            menuItems
-                                    );
-
-                                    listView.setAdapter(listViewAdapter);
+//                                    listView.setAdapter(listViewAdapter);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();

@@ -14,13 +14,13 @@ public class AffichageCompteRendu extends AppCompatActivity {
 
         TextView id,date,bilan,coefconf,coefnoto,coefpres,motiflibelle,motifdescr;
 
-        id = (TextView) findViewById(R.id.tvCptId);
-        date = (TextView) findViewById(R.id.tvCptDate);
-        bilan = (TextView) findViewById(R.id.tvCptBilan);
-        coefconf = (TextView) findViewById(R.id.tvCptCoefConf);
-        coefnoto = (TextView) findViewById(R.id.tvCptCoefNoto);
-        coefpres = (TextView) findViewById(R.id.tvCptCoefPrescr);
-        motiflibelle = (TextView) findViewById(R.id.tvCptMotif);
+        id = (TextView) findViewById(R.id.tvRdvId);
+        date = (TextView) findViewById(R.id.tvRdvDate);
+        bilan = (TextView) findViewById(R.id.tvRdvLieu);
+        coefconf = (TextView) findViewById(R.id.tvRdvAdresse);
+        coefnoto = (TextView) findViewById(R.id.tvRdvCP);
+        coefpres = (TextView) findViewById(R.id.tvRdvVille);
+        motiflibelle = (TextView) findViewById(R.id.praticien);
         motifdescr = (TextView) findViewById(R.id.tvCptDescription);
 
         SingleTonCptRendu s2 = SingleTonCptRendu.getInstance();

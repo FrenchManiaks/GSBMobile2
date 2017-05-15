@@ -1,6 +1,7 @@
 package fr.falconteam.www.projetgsb;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -76,13 +77,13 @@ public class HomeFragment extends Fragment  {
                     JSONArray jsonArrayrv = new JSONArray(response);
                     JSONObject jsonObjectrdv = jsonArrayrv.getJSONObject(0);
                     if (jsonObjectrdv.has("id")) {
-                        SingletonUser s1 = SingletonUser.getInstance();
+                        final SingletonUser s1 = SingletonUser.getInstance();
                         ArrayList<String> idlist = new ArrayList<>();
                         ArrayList<String> DateList = new ArrayList<>();
                         ArrayList<String> NomList = new ArrayList<>();
                         ArrayList<String> PrenomList = new ArrayList<>();
                         ArrayList<String> TestList = new ArrayList<>();
-                        ArrayList<String> RdvList = new ArrayList<>();
+                        ArrayList<String> LieuList = new ArrayList<>();
 
                         ArrayList <String> test = new ArrayList<>();
 
@@ -93,27 +94,28 @@ public class HomeFragment extends Fragment  {
                             s1.setRdvId(idlist);
                             s1.setRdvDate(DateList);
 
-
-
-
-                            /**TEST
-                             *
-                             */
-
                             s1.setRdvInfo(jsonObjectrdv.getString("description"));
-                                JSONObject jsonObjecttes = jsonArrayrv.getJSONObject(i);
-                                TestList.add(jsonObjecttes.getString("praticien"));
+                            JSONObject jsonObjecttes = jsonArrayrv.getJSONObject(i);
+                            TestList.add(jsonObjecttes.getString("praticien"));
+                            LieuList.add(jsonObjecttes.getString("lieu"));
 
                             JSONArray jsonArrayPraticien = new JSONArray(TestList);
+                            JSONObject jsonObject = new JSONObject(jsonArrayPraticien.getString(i));
+                            NomList.add(jsonObject.getString("nom"));
+                            PrenomList.add(jsonObject.getString("prenom"));
+                            s1.setRdvPrenomPraticien(PrenomList);
+                            s1.setRdvNomPraticien(NomList);
 
-                                    JSONObject jsonObject = new JSONObject(jsonArrayPraticien.getString(i));
-                                    NomList.add(jsonObject.getString("nom"));
-                                    PrenomList.add(jsonObject.getString("prenom"));
 
-                                    RdvList.add(DateList + " Avec "+ NomList + " " + PrenomList);
 
-                                    s1.setRdvPrenomPraticien(PrenomList);
-                                    s1.setRdvNomPraticien(NomList);
+                            JSONArray jsonArraylieu = new JSONArray(LieuList);
+                            JSONObject jsonObjectLieu = new JSONObject(jsonArraylieu.getString(i));
+                            s1.setRdvLieuLibelle(jsonObjectLieu.getString("libelle"));
+                            s1.setRdvLieuAdresse(jsonObjectLieu.getString("adresse"));
+                            s1.setRdvLieuCP(jsonObjectLieu.getString("cp"));
+                            s1.setRdvLieuVille(jsonObjectLieu.getString("ville"));
+
+
 
                             test.add("N°" + jsonObjectId.getString("id") + "_ Le " + jsonObjectId.getString("date") +
                             "\n Avec Mr./Mme." + jsonObject.getString("nom") + " " + jsonObject.getString("prenom"));
@@ -137,8 +139,16 @@ public class HomeFragment extends Fragment  {
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
                                 String selectedFromList =(String) (listView.getItemAtPosition(myItemInt));
+                                String result = selectedFromList.substring(selectedFromList.indexOf("°") + 1, selectedFromList.indexOf("_"));
+                                String resultdate = selectedFromList.substring(selectedFromList.indexOf(" ") + 1, selectedFromList.indexOf("\n"));
+                                s1.setResult(result);
+                                s1.setResultDate(resultdate);
+
+                                Intent intent = new Intent(getActivity(), AffichageRdv.class);
+                                startActivity(intent);
 
                             }
+
                         });
 
                     } else {

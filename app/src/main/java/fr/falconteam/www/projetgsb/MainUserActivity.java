@@ -153,6 +153,16 @@ public class MainUserActivity extends AppCompatActivity
             fragmentTransaction.commit();
         }
 
+//        else if (id == R.id.nav_efczParcAuto) {
+//
+//            //Set the fragment init
+//            RdvExpLv fragment = new RdvExpLv();
+//            android.support.v4.app.FragmentTransaction fragmentTransaction =
+//                    getSupportFragmentManager().beginTransaction();
+//            fragmentTransaction.replace(R.id.fragment_container, fragment);
+//            fragmentTransaction.commit();
+//        }
+
             else if (id == R.id.nav_assistancetel) {
 
             Intent intent = new Intent(Intent.ACTION_DIAL);
