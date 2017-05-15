@@ -16,6 +16,7 @@ class SingletonParcAuto {
     ArrayList<String> TypeVehicule;
     ArrayList <String> Dispo;
     ArrayList<String> Type;
+    public String MatriculeResult;
 
     private SingletonParcAuto() {
     }
@@ -42,5 +43,15 @@ class SingletonParcAuto {
 
     public ArrayList getType(){
         return Type;
+    }
+
+    public void setMatriculeResult(String setter){
+
+        MatriculeResult = setter;
+
+    }
+
+    public String getMatriculeResult(){
+        return MatriculeResult;
     }
 }

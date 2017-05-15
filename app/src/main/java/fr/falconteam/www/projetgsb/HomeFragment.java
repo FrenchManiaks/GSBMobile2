@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment  {
     }
     SingletonUser s1 = SingletonUser.getInstance();
 
-    String rdv_URL = s1.getAdresseIP() +"getRdvByIdVisiteur.php";
+    String rdv_URL = s1.getAdresseIP() +"getRdvByutilisateurid.php";
     String userid;
     private RequestQueue requestQueue;
     private StringRequest request;
@@ -179,7 +179,7 @@ public class HomeFragment extends Fragment  {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 HashMap<String, String> hashmap = new HashMap<String, String>();
-                hashmap.put("id_visiteur", userid.toString());
+                hashmap.put("id_utilisateur", userid.toString());
 
                 return hashmap;
 

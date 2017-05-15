@@ -1,5 +1,6 @@
 package fr.falconteam.www.projetgsb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -40,7 +41,7 @@ public class ParcAutoFragment extends Fragment {
     private RequestQueue requestQueue;
     private StringRequest request;
     String userid;
-    String Parc_URL = s1.getAdresseIP() +"getVehiculeByParcAutoId.php";
+    String Parc_URL = s1.getAdresseIP() +"getvehiculebyparcautoidmobile.php";
     String i;
     ListView listView;
 
@@ -59,6 +60,8 @@ public class ParcAutoFragment extends Fragment {
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, final View view, int pos, long id) {
                 Object item = parent.getItemAtPosition(pos);
+                i = null;
+
                 if(item.equals("Lyon - PartDieu")){
 
                     i = "1";
@@ -124,6 +127,21 @@ public class ParcAutoFragment extends Fragment {
                                         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                                                 android.R.layout.simple_list_item_1, remplissagelist);
                                         listView.setAdapter(adapter);
+                                        adapter.notifyDataSetChanged();
+
+
+                                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                            public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
+                                                String selectedFromList =(String) (listView.getItemAtPosition(myItemInt));
+                                                String result = selectedFromList.substring(selectedFromList.indexOf(""), selectedFromList.indexOf("citadine"));
+                                                s2.setMatriculeResult(result);
+
+                                                Intent intent = new Intent(getActivity(), AffichageParcAuto.class);
+                                                startActivity(intent);
+
+                                            }
+
+                                        });
 
                                     }
 
@@ -137,7 +155,7 @@ public class ParcAutoFragment extends Fragment {
 //
                                     final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                                     android.R.layout.simple_list_item_1, menuItems);
-                                    listView.setAdapter(adapter);
+                                    listView.deferNotifyDataSetChanged();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -153,7 +171,7 @@ public class ParcAutoFragment extends Fragment {
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             HashMap<String, String> hashmap = new HashMap<String, String>();
-                            hashmap.put("id_parc_automobile", i);
+                            hashmap.put("id_parc_auto", i);
 
                             return hashmap;
 

@@ -38,8 +38,8 @@ public class GestionFraisFragment extends Fragment {
 
     SingletonUser s1 = SingletonUser.getInstance();
 
-    String URL_Frais = s1.getAdresseIP() +"addfrais.php";
-    String userid;
+    String URL_Frais = s1.getAdresseIP() +"addfraismobile.php";
+
     Button sendData;
     EditText TypeFrais, DateFrais, MontantFrais, CommentaireFrais;
     private RequestQueue requestQueue;
@@ -71,14 +71,13 @@ public class GestionFraisFragment extends Fragment {
                     public void onResponse(String response) {
 
                         try {
+//                            JSONArray jsonArray = new JSONArray(response);
                             JSONObject jsonObject = new JSONObject(response);
-//                            JSONObject jsonObject = new JSONObject(response);
-
-//                            boolean error = jsonObject.getBoolean(response);
-                            if (jsonObject.equals(true)) {
-                                Toast.makeText(getActivity(), "Erreur, le frais n'as pas pu être envoyé.", Toast.LENGTH_LONG).show();
-                            } else {
+                            if (jsonObject.getString("message").equals("Le frais a bien ete ajoute.")) {
                                 Toast.makeText(getActivity(),  "Le frais a bien été ajouté.",Toast.LENGTH_LONG).show();
+
+                            } else {
+                                Toast.makeText(getActivity(), "Erreur, le frais n'as pas pu être envoyé.", Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -94,9 +93,10 @@ public class GestionFraisFragment extends Fragment {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
                         HashMap<String, String> hashmap = new HashMap<String, String>();
-                        hashmap.put("date", DateFrais.getText().toString());
-                        hashmap.put("commentaire", CommentaireFrais.getText().toString());
+
                         hashmap.put("montant", MontantFrais.getText().toString());
+                        hashmap.put("commentaire", CommentaireFrais.getText().toString());
+                        hashmap.put("date", DateFrais.getText().toString());
                         hashmap.put("id_utilisateur", s1.getUserId().toString());
                         hashmap.put("id_type_frais", TypeFrais.getText().toString());
 

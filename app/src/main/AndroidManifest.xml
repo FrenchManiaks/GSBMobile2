@@ -27,7 +27,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AffichageCompteRendu" />
-        <activity android:name=".AffichageRdv"></activity>
+        <activity android:name=".AffichageRdv" />
+        <activity android:name=".AffichageParcAuto"></activity>
     </application>
 
 </manifest>
