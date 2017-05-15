@@ -42,6 +42,7 @@ public class ParcAutoFragment extends Fragment {
     String userid;
     String Parc_URL = s1.getAdresseIP() +"getVehiculeByParcAutoId.php";
     String i;
+    ListView listView;
 
 
     @Override
@@ -51,6 +52,8 @@ public class ParcAutoFragment extends Fragment {
 
 
         Spinner mySpinner=(Spinner) view.findViewById(R.id.spinner);
+        listView = (ListView) view.findViewById(R.id.lvParcAuto);
+
 
 
         mySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -79,59 +82,62 @@ public class ParcAutoFragment extends Fragment {
 
                             try {
                                 JSONArray jsonArrayParc = new JSONArray(response);
+
+                                if (!jsonArrayParc.equals(null)){
+                                    JSONObject jsonObjectParc = jsonArrayParc.getJSONObject(0);
+                                }
                                 JSONObject jsonObjectParc = jsonArrayParc.getJSONObject(0);
                                 if (jsonObjectParc.has("immatricule")) {
 
                                     ArrayList <String> Type = new ArrayList<String>();
                                     ArrayList <String> dispo = new ArrayList<String>();
                                     ArrayList <String> TypeVehicle = new ArrayList<String>();
+                                    ArrayList <String> TypeEnergie = new ArrayList<String>();
+                                    ArrayList <String>  Energie = new ArrayList<String>();
+                                    ArrayList <String> Matricule = new ArrayList<String>();
+
+                                    ArrayList <String> remplissagelist = new ArrayList<String>();
                                     for (int i = 0; i < jsonArrayParc.length();i++){
                                         JSONObject jsonObjectId = jsonArrayParc.getJSONObject(i);
                                         dispo.add(jsonObjectId.getString("disponible"));
                                         s2.setDispo(dispo);
                                         TypeVehicle.add(jsonObjectId.getString("type_vehicule"));
-                                        s2.setTypeVehicule(TypeVehicle);
-                                    }
+                                        Matricule.add(jsonObjectId.getString("immatricule"));
 
+                                        s2.setTypeVehicule(TypeVehicle);
+                                        TypeEnergie.add(jsonObjectId.getString("energie"));
 
 
                                     JSONArray jsonArrayType = new JSONArray(s2.getTypeVehicule());
-                                    for (int i = 0; i < jsonArrayType.length(); i++){
+
                                         JSONObject jsonObjectType = new JSONObject(jsonArrayType.getString(i));
                                         Type.add(jsonObjectType.getString("libelle"));
                                         s2.setType(Type);
+
+                                    JSONArray jsonArrayEnergie = new JSONArray(TypeEnergie);
+                                        JSONObject jsonObjectEnergie = new JSONObject(jsonArrayEnergie.getString(i));
+                                        Energie.add(jsonObjectEnergie.getString("libelle"));
+
+                                        remplissagelist.add(jsonObjectId.getString("immatricule") + " "+
+                                                jsonObjectType.getString("libelle")+ " "+ jsonObjectEnergie.getString("libelle"));
+
+                                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                                android.R.layout.simple_list_item_1, remplissagelist);
+                                        listView.setAdapter(adapter);
+
                                     }
 
 
-//                                    String[] menuItems = {"TEST."};
 
-                                    ListView listView = (ListView) view.findViewById(R.id.lvParcAuto);
-
-//                                    ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-//                                            getActivity(),
-//                                            android.R.layout.simple_list_item_1,
-//                                            menuItems
-//                                    );
-
-                                    String[] values = new String[] { "Message1", "Message2", "Message3" };
-                                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                                            android.R.layout.simple_list_item_1, values);
-                                    listView.setAdapter(adapter);
-
-//                                    listView.setAdapter(listViewAdapter);
                                 } else {
 
-                                    String[] menuItems = {"Vous n'avez pas de rendez-vous actuellement."};
-
+                                    String[] menuItems = {"Il n'y a pas de véhicules disponnibles dans ce Parc."};
+//
                                     ListView listView = (ListView) view.findViewById(R.id.lvParcAuto);
-
-                                    ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                                            getActivity(),
-                                            android.R.layout.simple_list_item_1,
-                                            menuItems
-                                    );
-
-//                                    listView.setAdapter(listViewAdapter);
+//
+                                    final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                                    android.R.layout.simple_list_item_1, menuItems);
+                                    listView.setAdapter(adapter);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
