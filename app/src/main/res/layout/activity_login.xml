@@ -32,7 +32,6 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/username"
         android:singleLine="true"
-        android:text="user"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="#A0192133" />
@@ -48,7 +47,6 @@
         android:fontFamily="sans-serif-light"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="user"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="#A0192133" />
 

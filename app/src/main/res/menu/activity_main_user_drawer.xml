@@ -33,7 +33,6 @@
     <item
         android:id="@+id/nav_assistancemail"
         android:icon="@drawable/assistancemail"
-        android:title="assistance.gsb@gsbtoz.fr">
-    </item>
+        android:title="support@gsb.fr"></item>
 
 </menu>
