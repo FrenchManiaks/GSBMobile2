@@ -28,7 +28,7 @@ public class AffichageParcAuto extends AppCompatActivity {
     private RequestQueue requestQueue;
     private StringRequest request;
     SingletonUser s1 = SingletonUser.getInstance();
-    String URL = s1.getAdresseIP() + "getvehicule.php";
+    String URL = s1.getAdresseIP() + "getVehicule.php";
     SingletonParcAuto s2 = SingletonParcAuto.getInstance();
 
     @Override

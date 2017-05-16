@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment  {
     }
     SingletonUser s1 = SingletonUser.getInstance();
 
-    String rdv_URL = s1.getAdresseIP() +"getRdvByutilisateurid.php";
+    String rdv_URL = s1.getAdresseIP() +"getRdvByUtilisateurId.php";
     String userid;
     private RequestQueue requestQueue;
     private StringRequest request;

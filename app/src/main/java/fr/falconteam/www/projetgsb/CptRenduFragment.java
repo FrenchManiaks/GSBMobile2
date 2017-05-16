@@ -36,7 +36,7 @@ public class CptRenduFragment extends Fragment {
 
     SingletonUser s1 = SingletonUser.getInstance();
 
-    String URL_CptRendu = s1.getAdresseIP() +"getcompterendubyid.php";
+    String URL_CptRendu = s1.getAdresseIP() +"getCompteRenduById.php";
     EditText CptRenduID;
     Button SendCptRendu;
     private RequestQueue requestQueue;

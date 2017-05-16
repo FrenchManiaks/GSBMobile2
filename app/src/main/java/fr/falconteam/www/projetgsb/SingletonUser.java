@@ -25,7 +25,7 @@ public class SingletonUser {
     public String RdvLieuCP;
     public String RdvLieuVille;
     public String RdvPMail;
-    public String AdresseIP = "http://192.168.43.224:80/apigsb/";
+    public String AdresseIP = "http://groupegsb.fr/apigsb/";
     public String result;
     public String resultDate;
 

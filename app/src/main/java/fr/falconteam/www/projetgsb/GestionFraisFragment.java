@@ -38,7 +38,7 @@ public class GestionFraisFragment extends Fragment {
 
     SingletonUser s1 = SingletonUser.getInstance();
 
-    String URL_Frais = s1.getAdresseIP() +"addfraismobile.php";
+    String URL_Frais = s1.getAdresseIP() +"addFraisMobile.php";
 
     Button sendData;
     EditText TypeFrais, DateFrais, MontantFrais, CommentaireFrais;

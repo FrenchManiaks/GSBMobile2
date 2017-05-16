@@ -41,7 +41,7 @@ public class ParcAutoFragment extends Fragment {
     private RequestQueue requestQueue;
     private StringRequest request;
     String userid;
-    String Parc_URL = s1.getAdresseIP() +"getvehiculebyparcautoidmobile.php";
+    String Parc_URL = s1.getAdresseIP() +"getVehiculeByParcAutoIdMobile.php";
     String i;
     ListView listView;
 
